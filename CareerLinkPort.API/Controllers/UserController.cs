@@ -3,6 +3,7 @@ using CareerLinkPort.BLL.Services;
 using CareerLinkPort.Core.Models.UserModels;
 using CareerLinkPort.Shared.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -13,10 +14,14 @@ namespace CareerLinkPort.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IConfiguration _configuration;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IConfiguration configuration, UserManager<AppUser> userManager  )
         {
             _userService = userService;
+            _configuration = configuration;
+            _userManager = userManager;
         }
 
 
@@ -77,12 +82,19 @@ namespace CareerLinkPort.API.Controllers
                 return BadRequest(ModelState);
 
             var result = await _userService.LoginEmployerAsync(model);
-
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            return Ok(new { Message = "Employer successfully logged in" });
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var token = await _userService.GenerateTokenAsync(user);
+
+            return Ok(new
+            {
+                Token = token,
+                Message = "Employer successfully logged in"
+            });
         }
+
 
         [HttpPost("login/alumni")]
         public async Task<IActionResult> LoginAlumni([FromBody] AlumniLoginDto model)
@@ -95,7 +107,15 @@ namespace CareerLinkPort.API.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            return Ok(new { Message = "Alumni successfully logged in" });
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var token = await _userService.GenerateTokenAsync(user);
+
+            return Ok(new
+            {
+                Token = token,
+                Message = "Alumni successfully logged in"
+            });
         }
 
         [HttpPost("login/admin")]
@@ -109,7 +129,14 @@ namespace CareerLinkPort.API.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            return Ok(new { Message = "Admin successfully logged in" });
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var token = await _userService.GenerateTokenAsync(user);
+
+            return Ok(new
+            {
+                Token = token,
+                Message = "Employer successfully logged in"
+            });
         }
 
 

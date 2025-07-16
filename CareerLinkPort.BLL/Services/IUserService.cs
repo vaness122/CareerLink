@@ -1,4 +1,5 @@
-﻿using CareerLinkPort.Shared.DTOs;
+﻿using CareerLinkPort.Core.Models.UserModels;
+using CareerLinkPort.Shared.DTOs;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,7 @@ namespace CareerLinkPort.BLL.Services
         Task<IdentityResult> LoginEmployerAsync(EmployerLoginDto model);
         Task<IdentityResult> LoginAlumniAsync(AlumniLoginDto model);
         Task <IdentityResult> LoginAdminAsync(AdminLoginDto model);
+
+        Task<string> GenerateTokenAsync(AppUser user);
     }
 }
