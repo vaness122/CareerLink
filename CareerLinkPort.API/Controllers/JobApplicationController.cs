@@ -2,7 +2,7 @@
 
 namespace CareerLinkPort.API.Controllers
 {
-    public class ApplicationController : Controller
+    public class JobApplicationController : Controller
     {
         public IActionResult Index()
         {
