@@ -88,5 +88,77 @@ namespace CareerLinkPort.BLL.Services
 
 
         }
+
+        //login
+
+        public async Task<IdentityResult> LoginEmployerAsync(EmployerLoginDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError { Description = "User not found." });
+
+            if (!(user is Employer))
+                return IdentityResult.Failed(new IdentityError { Description = "User is not an employer." });
+
+            var inRole = await _userManager.IsInRoleAsync(user, "Employer");
+            if (!inRole)
+                return IdentityResult.Failed(new IdentityError { Description = "User is not in Employer role." });
+
+            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (!passwordValid)
+                return IdentityResult.Failed(new IdentityError { Description = "Incorrect password." });
+
+            return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> LoginAlumniAsync(AlumniLoginDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError { Description = "User not found." });
+
+            if (!(user is Alumni))
+                return IdentityResult.Failed(new IdentityError { Description = "User is not an alumni." });
+
+            var inRole = await _userManager.IsInRoleAsync(user, "Alumni");
+            if (!inRole)
+                return IdentityResult.Failed(new IdentityError { Description = "User is not in Alumni role." });
+
+            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (!passwordValid)
+                return IdentityResult.Failed(new IdentityError { Description = "Incorrect password." });
+
+            return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> LoginAdminAsync(AdminLoginDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError { Description = "User not found." });
+
+            if (!(user is Admin))
+                return IdentityResult.Failed(new IdentityError { Description = "User is not an admin." });
+
+            var inRole = await _userManager.IsInRoleAsync(user, "Admin");
+            if (!inRole)
+                return IdentityResult.Failed(new IdentityError { Description = "User is not in Admin role." });
+
+            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (!passwordValid)
+                return IdentityResult.Failed(new IdentityError { Description = "Incorrect password." });
+
+            return IdentityResult.Success;
+        }
+
+
+
+
+
+
+
     }
 }

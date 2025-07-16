@@ -19,6 +19,10 @@ namespace CareerLinkPort.API.Controllers
             _userService = userService;
         }
 
+
+        // register API
+
+
         [HttpPost("register/employer")]
         public async Task<IActionResult> RegisterEmployer([FromBody] EmployerRegistrationDto model)
         {
@@ -61,5 +65,56 @@ namespace CareerLinkPort.API.Controllers
 
             return Ok(new { Message = "Admin registration successful" });
         }
+
+
+        //login API
+
+
+        [HttpPost("login/employer")]
+        public async Task<IActionResult> LoginEmployer([FromBody] EmployerLoginDto model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.LoginEmployerAsync(model);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(new { Message = "Employer successfully logged in" });
+        }
+
+        [HttpPost("login/alumni")]
+        public async Task<IActionResult> LoginAlumni([FromBody] AlumniLoginDto model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.LoginAlumniAsync(model);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(new { Message = "Alumni successfully logged in" });
+        }
+
+        [HttpPost("login/admin")]
+        public async Task<IActionResult> LoginAdmin([FromBody] AdminLoginDto model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.LoginAdminAsync(model);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(new { Message = "Admin successfully logged in" });
+        }
+
+
+
+
+
     }
 }

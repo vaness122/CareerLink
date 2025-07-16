@@ -13,5 +13,9 @@ namespace CareerLinkPort.BLL.Services
         Task<IdentityResult> RegisterEmployerAsync(EmployerRegistrationDto model);
         Task<IdentityResult> RegisterAlumniAsync(AlumniRegistrationDto model);
         Task<IdentityResult> RegisterAdminAsync(AdminRegistrationDto model);
+
+        Task<IdentityResult> LoginEmployerAsync(EmployerLoginDto model);
+        Task<IdentityResult> LoginAlumniAsync(AlumniLoginDto model);
+        Task <IdentityResult> LoginAdminAsync(AdminLoginDto model);
     }
 }

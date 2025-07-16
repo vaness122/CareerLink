@@ -20,5 +20,6 @@ namespace CareerLinkPort.Shared.DTOs
         public int Views { get; set; } = 0;
 
         public string EmployerId { get; set; }
+        
     }
 }
