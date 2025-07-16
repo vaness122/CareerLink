@@ -2,6 +2,7 @@
 
 namespace CareerLinkPort.API.Controllers
 {
+    //handling jobapplications of alumni
     public class JobApplicationController : Controller
     {
         public IActionResult Index()
