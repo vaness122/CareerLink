@@ -135,7 +135,7 @@ namespace CareerLinkPort.API.Controllers
             return Ok(new
             {
                 Token = token,
-                Message = "Employer successfully logged in"
+                Message = "Admin successfully logged in"
             });
         }
 

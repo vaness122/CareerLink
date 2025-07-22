@@ -2,8 +2,11 @@
 
 namespace CareerLinkPort.API.Controllers
 {
-    //handling jobapplications of alumni
-    public class JobApplicationController : Controller
+    //apply jobs  
+    //see application status
+    //see applied jobs
+    //update profile
+    public class AlumniController : Controller
     {
         public IActionResult Index()
         {

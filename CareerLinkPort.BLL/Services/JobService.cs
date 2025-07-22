@@ -99,6 +99,11 @@ namespace CareerLinkPort.BLL.Services
             }   
         }
 
+        public Task<List<Job>> SearchJobsAsync(string searchTerm, string location, string jobType)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> UpdateJobAsync(Job job)
         {
             await _jobRepository.UpdateAsync(job);

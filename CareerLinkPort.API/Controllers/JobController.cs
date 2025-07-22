@@ -24,7 +24,7 @@ namespace CareerLinkPort.API.Controllers
             return Ok(jobs);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getbyidincrementview/{id}")]
         public async Task<IActionResult> GetJob(int id)
         {
             var job = await _jobService.GetJobByIdAsync(id);
@@ -35,7 +35,7 @@ namespace CareerLinkPort.API.Controllers
         }
 
         [HttpGet("employer/{employerId}")]
-        [Authorize(Roles = "Employer,Admin")]
+       // [Authorize(Roles = "Employer,Admin")]
         public async Task<IActionResult> GetEmployerJobs(string employerId)
         {
             var jobs = await _jobService.GetByEmployerJobAsync(employerId);
@@ -43,7 +43,7 @@ namespace CareerLinkPort.API.Controllers
         }
 
         [HttpGet("pending")]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetPendingJobs()
         {
             var jobs = await _jobService.GetPendingJobsAsync();

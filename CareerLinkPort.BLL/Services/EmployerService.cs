@@ -1,7 +1,6 @@
 ﻿using CareerLinkPort.Core.Models.JobModels;
 using CareerLinkPort.Core.Models.UserModels;
 using CareerLinkPort.Shared.DTOs;
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +9,9 @@ using System.Threading.Tasks;
 
 namespace CareerLinkPort.BLL.Services
 {
-    public class AdminService : IAdminService
+    public class EmployerService : IEmployerService
     {
-        public Task<bool> ActivateUserAsync(string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IdentityResult> AddAdminAccAsync(AdminRegistrationDto model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> ApproveJobAsync(int jobId)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<bool> CreateJobAsync(Job job)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DeactivateUserAsync(string userId)
         {
             throw new NotImplementedException();
         }
@@ -42,22 +21,42 @@ namespace CareerLinkPort.BLL.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Job>> GetAllPendingJobsAsync()
+        public Task<List<Job>> GetApprovedJobsAsync(string employerId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<AppUser>> GetAllUsersAsync()
+        public Task<Employer> GetEmployerByIdAsync(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RejectJobAsync(int jobId)
+        public Task<JobApplication> GetJobApplicationByIdAsync(int jobId, int applicationId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAdminProfileAsync(string adminId, AdminUpdateDto model)
+        public Task<List<JobApplication>> GetJobApplicationsAsync(int jobId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<JobApplication>> GetPendingApplicationsAsync(string employerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Job>> GetPendingApprovalJobsAsync(string employerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateApplicationStatusAsync(int jobId, int applicationId, string status, string notes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateEmployerProfileAsync(string id, EmployerUpdateDto model)
         {
             throw new NotImplementedException();
         }

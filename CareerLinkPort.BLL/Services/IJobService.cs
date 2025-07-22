@@ -20,6 +20,7 @@ namespace CareerLinkPort.BLL.Services
         Task IncrementViewCountAsync(int jobId);
         Task<List<Job>> GetMostViewedJobsAsync(int count = 5);
         Task<List<Job>> GetMostAppliedJobsAsync(int count = 5);
+        Task<List<Job>> SearchJobsAsync(string searchTerm, string location, string jobType);
 
     }
 }
